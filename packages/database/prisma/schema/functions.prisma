@@ -1,0 +1,19 @@
+model BoardFactionRole {
+    id     String @id @default(uuid())
+    userId String
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    type     RoleType // 'BOARD' | 'FACTION'
+    function String // e.g., 'Chairperson', 'Secretary'
+    year     Int // e.g., 2024
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("board_faction_role")
+}
+
+enum RoleType {
+    BOARD
+    FACTION
+}
